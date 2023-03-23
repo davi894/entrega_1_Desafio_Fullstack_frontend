@@ -1,0 +1,12 @@
+#formCadastro {
+    display: flex;
+    align-items: center;
+    margin-top: 15%;
+    justify-content: center;
+}
+
+.divRouterLoginRegister {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

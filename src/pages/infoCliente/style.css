@@ -1,0 +1,12 @@
+.divUl {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.ListContacts {}
+
+.contacts {
+    margin-top: 1rem;
+    border: 0.3rem solid darkgreen;
+}

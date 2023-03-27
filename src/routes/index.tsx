@@ -31,9 +31,9 @@ function RoutesMain() {
             </Route>
             <Route
                 path="*"
-                element={<Navigate to="/login" />}
+                element={<Navigate to="login" />}
             />
-        </Routes>
+        </Routes >
     );
 }
 

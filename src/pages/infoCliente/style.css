@@ -7,6 +7,7 @@
 .ListContacts {}
 
 .contacts {
+    padding: 1rem;
     margin-top: 1rem;
-    border: 0.3rem solid darkgreen;
+    border: 0.3rem solid #000000;
 }

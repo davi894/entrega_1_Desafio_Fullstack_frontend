@@ -2,23 +2,32 @@ import './style.css'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ContexteDadosUserFunction } from '../../context';
-import { validatedRegisterCostumer } from './schema';
+import { validatedupdate } from './schema';
 import { IRegisterClientAndContact } from '../../context';
 import { Navbar } from '../../components/Navbar';
 
+
 const Update = () => {
-    const { registerContact } = ContexteDadosUserFunction()
+    const { updateAccount, userData } = ContexteDadosUserFunction()
+
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(validatedRegisterCostumer),
+        resolver: yupResolver(validatedupdate),
     });
 
     const onSubmitFunction = (data: IRegisterClientAndContact) => {
-        registerContact(data)
+        if (data.name !== '') {
+            updateAccount({ ...userData, 'name': data.name })
+        } else if (data.email !== '') {
+            updateAccount({ ...userData, 'email': data.email })
+        } else if (data.phone !== '') {
+            updateAccount({ ...userData, 'phone': data.phone })
+        }
+
         reset();
     };
 
@@ -26,20 +35,17 @@ const Update = () => {
         <>
             <Navbar />
             <div id='formCadastro'>
-                <form onSubmit={handleSubmit(onSubmitFunction)}>
-                    <label htmlFor="">name:</label>
-                    <input type="text" placeholder='Digite seu name'   {...register("name")} />
-                    <span> <>{errors.name?.message}</></span>
+                <form onSubmit={handleSubmit(onSubmitFunction)} >
+                    <label htmlFor="">Name:</label>
+                    <input id='name' type="text" placeholder='Digite seu name'  {...register("name")} />
 
-                    <label htmlFor="">email:</label>
-                    <input type="text" placeholder='Digite sua email'  {...register("email")} />
-                    <span> <>{errors.email?.message}</></span>
+                    <label htmlFor="">Email:</label>
+                    <input id='email' type="text" placeholder='Digite sua email'  {...register("email")} />
 
-                    <label htmlFor="">phone:</label>
-                    <input type="text" placeholder='Digite seu phone'  {...register("phone")} />
-                    <span> <>{errors.phone?.message}</></span>
+                    <label htmlFor="">Phone:</label>
+                    <input id='phone' type="text" placeholder='Digite seu phone'  {...register("phone")} />
 
-                    <button type="submit">update</button>
+                    <button type='submit' >update</button >
                 </form>
             </div>
         </>

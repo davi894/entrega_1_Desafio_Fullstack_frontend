@@ -6,6 +6,8 @@ import { Navbar } from '../../components/Navbar';
 const InfoUser = () => {
     const { listContact } = ContexteDadosUserFunction()
 
+    let id = Date.now()
+    
     return (
         <>
             <Navbar />
@@ -15,7 +17,7 @@ const InfoUser = () => {
                         listContact.map((elem) => {
                             return (
                                 <>
-                                    <li key={elem.id} className="contacts">
+                                    <li key={id} className="contacts">
                                         <p>name : {elem.name}</p>
                                         <p>email : {elem.email}</p>
                                         <p>phone : {elem.phone}</p>

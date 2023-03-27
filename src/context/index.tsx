@@ -19,6 +19,8 @@ export const DadosUser = createContext({});
 function ContextDadosUser({ children }: IReactNode) {
     const [token, setToken] = useState("")
     const [listContact, setlistContact] = useState([])
+    const [userData, setUserData] = useState({})
+
     const navigate = useNavigate()
 
     const activateAccount = async (email: string) => {
@@ -31,7 +33,11 @@ function ContextDadosUser({ children }: IReactNode) {
         const userEmail = await instanceAxios.get(`/user/found/${data.email}`)
 
         activateAccount(userEmail.data.email)
-
+        setUserData({
+            "name": userEmail.data.name,
+            "email": userEmail.data.email,
+            "phone": userEmail.data.phone,
+        })
         if (userEmail.data.is_client) {
             localStorage.clear()
             await instanceAxios.post(`/login/client`, data)
@@ -101,6 +107,20 @@ function ContextDadosUser({ children }: IReactNode) {
 
     }
 
+    const updateAccount = async (data) => {
+        
+        if (localStorage.getItem("tokenClient")) {
+            instanceAxios.defaults.headers.authorization = `Bearer ${localStorage.getItem("tokenClient")}`;
+            await instanceAxios.patch("/user", data)
+
+        }
+
+        if (localStorage.getItem("tokenContact")) {
+            instanceAxios.defaults.headers.authorization = `Bearer ${localStorage.getItem("tokenContact")}`;
+            await instanceAxios.patch("/user", data)
+        }
+
+    }
 
     useEffect(() => {
         getContacts();
@@ -108,7 +128,17 @@ function ContextDadosUser({ children }: IReactNode) {
 
     return (
         <DadosUser.Provider
-            value={{ login, registrationClient, registerContact, listContact, deactivateAccount, activateAccount }} >
+            value={{
+                login,
+                registrationClient,
+                registerContact,
+                deactivateAccount,
+                activateAccount,
+                updateAccount,
+                listContact,
+                userData,
+                setUserData
+            }} >
             {children}
         </DadosUser.Provider>
     );

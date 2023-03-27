@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ContexteDadosUserFunction } from '../../context';
 import { validatedRegisterCostumer } from './schema';
 import { IRegisterClientAndContact } from '../../context';
-import { NavbarContact } from '../../components/NavbarContact';
 import { Navbar } from '../../components/Navbar';
 
 const FormRegisterContact = () => {
@@ -28,15 +27,15 @@ const FormRegisterContact = () => {
             <Navbar />
             <div id='formCadastro'>
                 <form onSubmit={handleSubmit(onSubmitFunction)}>
-                    <label htmlFor="">name:</label>
+                    <label htmlFor="">Name:</label>
                     <input type="text" placeholder='Digite seu name'   {...register("name")} />
                     <span> <>{errors.name?.message}</></span>
 
-                    <label htmlFor="">email:</label>
+                    <label htmlFor="">Email:</label>
                     <input type="text" placeholder='Digite sua email'  {...register("email")} />
                     <span> <>{errors.email?.message}</></span>
 
-                    <label htmlFor="">phone:</label>
+                    <label htmlFor="">Phone:</label>
                     <input type="text" placeholder='Digite seu phone'  {...register("phone")} />
                     <span> <>{errors.phone?.message}</></span>
 

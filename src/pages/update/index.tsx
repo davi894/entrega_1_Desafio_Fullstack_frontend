@@ -35,6 +35,7 @@ const Update = () => {
         <>
             <Navbar />
             <div id='formCadastro'>
+                <h4>update one field at a time!</h4>
                 <form onSubmit={handleSubmit(onSubmitFunction)} >
                     <label htmlFor="">Name:</label>
                     <input id='name' type="text" placeholder='Digite seu name'  {...register("name")} />

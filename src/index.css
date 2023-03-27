@@ -6,6 +6,7 @@ form {
     max-height: 268px;
     max-width: 220px;
     min-width: 220px;
+    margin-top: 1rem;
 }
 
 span {
@@ -43,4 +44,9 @@ button {
 input,
 button {
     border: 0.2rem solid rgb(121, 121, 121);
+}
+
+h4 {
+    font-weight: bold;
+    font-size: 1.5rem;
 }

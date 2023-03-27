@@ -3,6 +3,7 @@
     align-items: center;
     margin-top: 15%;
     justify-content: center;
+    flex-direction: column;
 }
 
 .divRouterLoginRegister {

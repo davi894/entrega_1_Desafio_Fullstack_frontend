@@ -99,7 +99,17 @@ function ContextDadosUser({ children }: IReactNode) {
     const registrationClient = async (data: IRegisterClientAndContact) => {
 
         const register = await instanceAxios.post("/register", data)
-
+        if (register.status) {
+            toast.success('register client success!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
         return register
     }
 

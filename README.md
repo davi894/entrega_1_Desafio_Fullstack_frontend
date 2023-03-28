@@ -5,3 +5,5 @@
 
 ## Comando para iniciar projeto
 "npm run dev"
+
+Quando o projeto estiver rodando fazer um Ctrl + click : http://localhost:5173/login

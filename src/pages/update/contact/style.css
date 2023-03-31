@@ -1,0 +1,12 @@
+#infoUserLogin {
+    height: 6rem;
+    border: 3px solid black;
+    margin-left: 1rem;
+    width: 16rem;
+}
+
+
+#infoUserLogin  p {
+    margin-top: 0.4em;
+    margin-left: 0.4rem;
+}

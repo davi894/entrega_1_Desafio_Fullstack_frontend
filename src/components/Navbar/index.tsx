@@ -15,14 +15,10 @@ const Navbar = () => {
             <header>
 
                 {
-                    (localStorage.getItem("tokenClient") || localStorage.getItem("tokenContact")) && location.pathname !== "/login"
+                    (localStorage.getItem("tokenClient")) && location.pathname !== "/login"
                         ?
                         <button
                             onClick={() => {
-
-                                if (localStorage.getItem("tokenContact")) {
-                                    localStorage.removeItem("tokenContact");
-                                }
 
                                 if (localStorage.getItem("tokenClient")) {
                                     localStorage.removeItem("tokenClient");
@@ -35,7 +31,7 @@ const Navbar = () => {
                         </button> : null}
 
                 {
-                    (localStorage.getItem("tokenClient") || localStorage.getItem("tokenContact")) && location.pathname !== "/login" ?
+                    (localStorage.getItem("tokenClient") ) && location.pathname !== "/login" ?
                         <button onClick={() => {
 
                             deleteAccount()
@@ -46,7 +42,7 @@ const Navbar = () => {
                 }
 
                 {
-                    (localStorage.getItem("tokenClient") || localStorage.getItem("tokenContact")) && location.pathname !== "/login" ?
+                    (localStorage.getItem("tokenClient") ) && location.pathname !== "/login" ?
                         <button onClick={() => {
                             navigate("/update")
 
@@ -68,6 +64,13 @@ const Navbar = () => {
                         navigate("/contact");
                     }}>
                         Register contact
+                    </button> : null
+                }
+                {
+                    localStorage.getItem("tokenClient") && location.pathname !== "/login" ? <button onClick={() => {
+                        navigate("/update/contact");
+                    }}>
+                        Update contact
                     </button> : null
                 }
 

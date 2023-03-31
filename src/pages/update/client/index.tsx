@@ -7,7 +7,7 @@ import { IRegisterClientAndContact } from '../../../context';
 import { Navbar } from '../../../components/Navbar';
 
 
-const Update = () => {
+const UpdateClient = () => {
     const { updateAccount, userData } = ContexteDadosUserFunction()
 
     const {
@@ -38,13 +38,13 @@ const Update = () => {
             <div id='formCadastro'>
                 <form onSubmit={handleSubmit(onSubmitFunction)} >
                     <label htmlFor="">Name:</label>
-                    <input id='name' type="text" placeholder='Digite seu name'  {...register("name")} />
+                    <input id='name' type="text" placeholder='Enter your name'  {...register("name")} />
 
                     <label htmlFor="">Email:</label>
-                    <input id='email' type="text" placeholder='Digite sua email'  {...register("email")} />
+                    <input id='email' type="text" placeholder='Enter your email'  {...register("email")} />
 
                     <label htmlFor="">Phone:</label>
-                    <input id='phone' type="text" placeholder='Digite seu phone'  {...register("phone")} />
+                    <input id='phone' type="text" placeholder='Enter your phone'  {...register("phone")} />
 
                     <button type='submit' >update</button >
                 </form>
@@ -58,4 +58,4 @@ const Update = () => {
     )
 }
 
-export { Update }
+export { UpdateClient }

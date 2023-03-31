@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 
-export const validacaoCadastro = yup.object().shape({
+export const validatedCadastro = yup.object().shape({
     name: yup
         .string()
         .required("Preenchimento do name obrigatório"),

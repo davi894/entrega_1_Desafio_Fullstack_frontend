@@ -46,12 +46,12 @@ function ContextDadosUser({ children }: IReactNode) {
             });
         }
 
-        activateAccount(userEmail.data.email)
         setUserData({
             "name": userEmail.data.name,
             "email": userEmail.data.email,
             "phone": userEmail.data.phone,
         })
+        activateAccount(userEmail.data.email)
 
         if (userEmail.data.is_client) {
             localStorage.clear()
@@ -119,6 +119,7 @@ function ContextDadosUser({ children }: IReactNode) {
             instanceAxios.defaults.headers.authorization = `Bearer ${localStorage.getItem("tokenClient")}`;
 
             await instanceAxios.post("/register/contacts", data).then((res) => {
+                setlistContact([...listContact, res.data])
                 if (res.status === 201) {
                     toast.success('create contact success!', {
                         position: "top-right",
@@ -146,14 +147,14 @@ function ContextDadosUser({ children }: IReactNode) {
 
     }
 
-    const deactivateAccount = async () => {
+    const deleteAccount = async () => {
 
         if (localStorage.getItem("tokenClient")) {
             instanceAxios.defaults.headers.authorization = `Bearer ${localStorage.getItem("tokenClient")}`;
 
             await instanceAxios.delete("/user").then((res) => {
                 if (res.status === 204) {
-                    toast.success('deactivate success!', {
+                    toast.success('delet account success!', {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -174,7 +175,7 @@ function ContextDadosUser({ children }: IReactNode) {
 
             await instanceAxios.delete("/user").then((res) => {
                 if (res.status === 204) {
-                    toast.success('deactivate success!', {
+                    toast.success('delete acount success!', {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -194,9 +195,11 @@ function ContextDadosUser({ children }: IReactNode) {
 
     const updateAccount = async (data) => {
 
+        setUserData(data)
         if (localStorage.getItem("tokenClient")) {
             instanceAxios.defaults.headers.authorization = `Bearer ${localStorage.getItem("tokenClient")}`;
             await instanceAxios.patch("/user", data).then((res) => {
+
                 if (res.status === 200) {
                     toast.success('upgrade success!', {
                         position: "top-right",
@@ -231,9 +234,44 @@ function ContextDadosUser({ children }: IReactNode) {
 
     }
 
+    const deleteContact = async (idContact) => {
+
+        const newListContacts = listContact.map((el) => {
+            if (el.id !== idContact) {
+                return el
+            }
+        })
+
+        setlistContact([...newListContacts])
+
+        if (localStorage.getItem("tokenClient")) {
+            instanceAxios.defaults.headers.authorization = `Bearer ${localStorage.getItem("tokenClient")}`;
+            await instanceAxios.delete(`/contact/:${idContact}`).then((res) => {
+                if (res.status === 204) {
+                    toast.success('delete contact success!', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+            })
+
+        }
+
+
+
+    }
+
     useEffect(() => {
+
         getContacts();
-    }, [token]);
+
+    }, [token, userData]);
+
 
     return (
         <DadosUser.Provider
@@ -241,12 +279,13 @@ function ContextDadosUser({ children }: IReactNode) {
                 login,
                 registrationClient,
                 registerContact,
-                deactivateAccount,
+                deleteAccount,
                 activateAccount,
                 updateAccount,
                 listContact,
                 userData,
-                setUserData
+                setUserData,
+                deleteContact
             }} >
             {children}
         </DadosUser.Provider>

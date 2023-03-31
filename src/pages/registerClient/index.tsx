@@ -1,7 +1,7 @@
-import './index.css'
+import './style.css'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validacaoCadastro } from "./schema";
+import { validatedCadastro } from "./schema";
 import { ContexteDadosUserFunction } from '../../context';
 import { Link, useNavigate } from 'react-router-dom';
 import { IRegisterClientAndContact } from '../../context';
@@ -16,7 +16,7 @@ const FormRegister = () => {
         reset,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(validacaoCadastro),
+        resolver: yupResolver(validatedCadastro),
     });
 
     const onSubmitFunction = async (data: IRegisterClientAndContact) => {
@@ -34,22 +34,22 @@ const FormRegister = () => {
             <Navbar />
             <div id='formCadastro'>
                 <form onSubmit={handleSubmit(onSubmitFunction)}>
-                    <label htmlFor="">name:</label>
-                    <input type="text" placeholder='Digite seu name'   {...register("name")} />
+                    <label htmlFor="">Name:</label>
+                    <input type="text" placeholder='Enter your name'   {...register("name")} />
                     <span> <>{errors.name?.message}</></span>
 
-                    <label htmlFor="">email:</label>
-                    <input type="text" placeholder='Digite sua email'  {...register("email")} />
+                    <label htmlFor="">Email:</label>
+                    <input type="text" placeholder='Enter your email'  {...register("email")} />
                     <span> <>{errors.email?.message}</></span>
 
-                    <label htmlFor="">phone:</label>
-                    <input type="text" placeholder='Digite seu phone'  {...register("phone")} />
+                    <label htmlFor="">Phone:</label>
+                    <input type="text" placeholder='Enter your phone'  {...register("phone")} />
                     <span> <>{errors.phone?.message}</></span>
 
-                    <button type="submit">cadastrar</button>
+                    <button type="submit">register</button>
 
                     <div className='divRouterLoginRegister'>
-                        <p>já  possui conta?</p>
+                        <p>already have an account?</p>
                         <Link to={"/login"} >
                             <div>Logar</div>
                         </Link>

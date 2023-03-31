@@ -2,9 +2,9 @@ import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 
 import { FormLogin } from "../pages/login";
 import { FormRegister } from "../pages/registerClient";
-import { InfoUser } from "../pages/infoCliente";
+import { InfoUser } from "../pages/infoListContacts";
 import { FormRegisterContact } from "../pages/registerContact";
-import { Update } from "../pages/update";
+import { Update } from "../pages/update/client";
 import { ContexteDadosUserFunction } from "../context";
 
 function ProtecaoRotas() {

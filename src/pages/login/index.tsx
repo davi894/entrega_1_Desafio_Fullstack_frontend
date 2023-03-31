@@ -1,7 +1,7 @@
 import './style.css'
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { validacaoLogin } from './schema';
+import { validatedLogin } from './schema';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ContexteDadosUserFunction } from '../../context';
 import { ILogin } from '../../context';
@@ -19,7 +19,7 @@ const FormLogin = () => {
         reset,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(validacaoLogin),
+        resolver: yupResolver(validatedLogin),
     });
 
     const onSubmitFunction = (data: ILogin) => {
@@ -35,15 +35,15 @@ const FormLogin = () => {
             <div className='formLogin'>
                 <form onSubmit={handleSubmit(onSubmitFunction)}>
                     <label htmlFor="">Email:</label>
-                    <input type="text" placeholder='Digite seu email'  {...register("email")} />
+                    <input type="text" placeholder='Enter your email'  {...register("email")} />
                     <span><> {errors.email?.message}</></span>
 
-                    <button type="submit">entrar</button>
+                    <button type="submit" >login</button>
 
                     <div className="divRouterLoginRegister">
-                        <p>ainda não possui conta?</p>
+                        <p>don't have an account yet?</p>
                         <Link to={"/register"} >
-                            <div>Cadastre-se</div>
+                            <div>Sign up</div>
                         </Link>
                     </div>
                 </form>

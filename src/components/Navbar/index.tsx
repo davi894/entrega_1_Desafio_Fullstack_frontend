@@ -8,7 +8,7 @@ const Navbar = () => {
     const location = useLocation();
 
     const navigate = useNavigate()
-    const { deactivateAccount } = ContexteDadosUserFunction()
+    const { deleteAccount } = ContexteDadosUserFunction()
 
     return (
         <section>
@@ -38,10 +38,10 @@ const Navbar = () => {
                     (localStorage.getItem("tokenClient") || localStorage.getItem("tokenContact")) && location.pathname !== "/login" ?
                         <button onClick={() => {
 
-                            deactivateAccount()
+                            deleteAccount()
 
                         }}>
-                            Deactivate account
+                            Delete account
                         </button> : null
                 }
 
@@ -51,7 +51,7 @@ const Navbar = () => {
                             navigate("/update")
 
                         }}>
-                            update account
+                            Update account
                         </button> : null
                 }
 
@@ -67,7 +67,7 @@ const Navbar = () => {
                     localStorage.getItem("tokenClient") && location.pathname !== "/login" ? <button onClick={() => {
                         navigate("/contact");
                     }}>
-                        register contact
+                        Register contact
                     </button> : null
                 }
 

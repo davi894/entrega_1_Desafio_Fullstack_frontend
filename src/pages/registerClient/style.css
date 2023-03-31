@@ -1,7 +1,7 @@
 #formCadastro {
     display: flex;
     align-items: center;
-    margin-top: 15%;
+    margin-top: 10%;
     justify-content: center;
     flex-direction: column;
 }

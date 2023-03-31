@@ -1,10 +1,10 @@
 import './style.css'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ContexteDadosUserFunction } from '../../context';
-import { validatedupdate } from './schema';
-import { IRegisterClientAndContact } from '../../context';
-import { Navbar } from '../../components/Navbar';
+import { ContexteDadosUserFunction } from '../../../context';
+import { validatedUpdate } from './schema';
+import { IRegisterClientAndContact } from '../../../context';
+import { Navbar } from '../../../components/Navbar';
 
 
 const Update = () => {
@@ -16,17 +16,18 @@ const Update = () => {
         reset,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(validatedupdate),
+        resolver: yupResolver(validatedUpdate),
     });
 
     const onSubmitFunction = (data: IRegisterClientAndContact) => {
-        if (data.name !== '') {
-            updateAccount({ ...userData, 'name': data.name })
-        } else if (data.email !== '') {
-            updateAccount({ ...userData, 'email': data.email })
-        } else if (data.phone !== '') {
-            updateAccount({ ...userData, 'phone': data.phone })
+
+        const userUpdate = {
+            "email": data.email === "" ? userData.email : data.email,
+            "name": data.name === "" ? userData.name : data.name,
+            "phone": data.phone === "" ? userData.phone : data.phone,
         }
+
+        updateAccount(userUpdate)
 
         reset();
     };
@@ -35,7 +36,6 @@ const Update = () => {
         <>
             <Navbar />
             <div id='formCadastro'>
-                <h4>update one field at a time!</h4>
                 <form onSubmit={handleSubmit(onSubmitFunction)} >
                     <label htmlFor="">Name:</label>
                     <input id='name' type="text" placeholder='Digite seu name'  {...register("name")} />
@@ -49,6 +49,11 @@ const Update = () => {
                     <button type='submit' >update</button >
                 </form>
             </div>
+            <section id='infoUserLogin'>
+                <p>EMAIL: {userData.email}</p>
+                <p>NAME: {userData.name}</p>
+                <p>PHONE: {userData.phone}</p>
+            </section>
         </>
     )
 }

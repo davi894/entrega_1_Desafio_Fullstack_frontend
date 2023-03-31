@@ -2,8 +2,8 @@ form {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    min-height: 261px;
-    max-height: 268px;
+    min-height: 317px;
+    max-height: 317px;
     max-width: 220px;
     min-width: 220px;
     margin-top: 1rem;
@@ -50,3 +50,5 @@ h4 {
     font-weight: bold;
     font-size: 1.5rem;
 }
+
+
